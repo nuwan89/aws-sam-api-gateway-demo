@@ -1,0 +1,31 @@
+Simulate object creation in S3 bucket
+-------------------------------------
+sam local generate-event s3 --bucket poc-devops --key nuwan.txt
+
+
+
+API Gateway
+-----------
+sudo $SAM_HOME local start-api
+
+
+
+Invoke Lmabda function locally
+------------------------------
+export SAM_HOME=$(`echo which sam`)
+sudo $SAM_HOME local invoke --event hello_world/event.json
+
+
+
+Package lambda function
+-----------------------
+sam package --output-template-file packaged.yaml --s3-bucket my-s3-bucket
+
+
+
+Create a Cloudformation Stack and deploy
+----------------------------------------
+sam deploy --template-file packaged.yaml --stack-name sam-my-app --capabilities CAPABILITY_IAM
+
+
+
